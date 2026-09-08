@@ -12,6 +12,9 @@ const resultTitle = document.querySelector('#resultTitle');
 const resultText = document.querySelector('#resultText');
 const explanation = document.querySelector('#explanation');
 const explanationList = document.querySelector('#explanationList');
+const badAcceptedScreen = document.querySelector('#badAcceptedScreen');
+const badReportScreen = document.querySelector('#badReportScreen');
+const reportBackBtn = document.querySelector('#reportBackBtn');
 const confirmRead = document.querySelector('#confirmRead');
 const goodAcceptBtn = document.querySelector('#goodAcceptBtn');
 
@@ -26,6 +29,7 @@ document.querySelectorAll('.mode-card').forEach(btn => {
 document.querySelector('#backBtn').addEventListener('click', backToMenu);
 document.querySelector('#retryBtn').addEventListener('click', () => startMode(currentMode));
 document.querySelector('#rejectOnlyBtn').addEventListener('click', () => finishBad(false));
+reportBackBtn.addEventListener('click', backToMenu);
 document.querySelector('#goodRejectBtn').addEventListener('click', () => finishGood(false));
 goodAcceptBtn.addEventListener('click', () => finishGood(true));
 
@@ -40,8 +44,12 @@ function startMode(mode){
   demo.classList.remove('hidden');
   result.classList.add('hidden');
   explanation.classList.add('hidden');
+  document.querySelector('.demo-head').classList.remove('hidden');
+  document.querySelector('.terms-window').classList.remove('hidden');
   badControls.classList.add('hidden');
   goodControls.classList.add('hidden');
+  badAcceptedScreen.classList.add('hidden');
+  badReportScreen.classList.add('hidden');
 
   if(mode === 'bad'){
     modeLabel.textContent = 'BAD EXAMPLE';
@@ -71,20 +79,28 @@ function startMode(mode){
 function finishBad(autoAccepted){
   clearInterval(timer);
   badControls.classList.add('hidden');
-  result.classList.remove('hidden');
-  explanation.classList.remove('hidden');
 
   if(autoAccepted){
-    resultKicker.textContent = 'AUTO ACCEPTED';
-    resultTitle.textContent = '何も押していないのに「同意済み」になりました';
-    resultText.textContent =
-      'ユーザーは積極的な承諾操作をしていません。それでも時間が経過しただけで「同意した」と扱われるため、意思確認として非常に弱い設計です。';
-  }else{
-    resultKicker.textContent = 'REJECTED';
-    resultTitle.textContent = '時間内に拒否しました';
-    resultText.textContent =
-      'このUIでは、ユーザーが同意しないために能動的に行動しなければなりません。放置・離席・読み込み中なども「同意」に変換されてしまいます。';
+    // Keep the experience realistic first: only show the acceptance result.
+    document.querySelector('.demo-head').classList.add('hidden');
+    document.querySelector('.terms-window').classList.add('hidden');
+    result.classList.add('hidden');
+    explanation.classList.add('hidden');
+    badAcceptedScreen.classList.remove('hidden');
+
+    setTimeout(() => {
+      badAcceptedScreen.classList.add('hidden');
+      badReportScreen.classList.remove('hidden');
+    }, 10000);
+    return;
   }
+
+  result.classList.remove('hidden');
+  explanation.classList.remove('hidden');
+  resultKicker.textContent = 'REJECTED';
+  resultTitle.textContent = '利用規約への同意を拒否しました';
+  resultText.textContent =
+    '時間内に拒否したため、同意扱いにはなりませんでした。ただし、このUIでは拒否する側だけが時間内に能動的な操作を求められています。';
 
   explanationList.innerHTML = `
     <li>同意するための明示的な操作が存在しない。</li>

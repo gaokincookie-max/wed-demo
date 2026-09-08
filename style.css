@@ -92,3 +92,117 @@ h2{margin:0 0 18px}
   .button-row{grid-template-columns:1fr}
   .demo-head{align-items:center}
 }
+
+
+.bad-legal-row{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+.bad-smallprint{
+  margin:0;
+  color:#d9bfc2;
+  font-size:12px;
+  line-height:1.6;
+  max-width:620px;
+}
+.bad-timer-pill{
+  flex:0 0 auto;
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+  padding:9px 12px;
+  border:1px solid #5b242b;
+  border-radius:999px;
+  background:#160d10;
+  color:#d9bfc2;
+  font-size:12px;
+}
+.bad-timer-pill strong{
+  color:#ff7c84;
+  font-size:22px;
+}
+
+.bad-accepted-screen,
+.bad-report-screen{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:#0b0d12;
+}
+.accepted-card{
+  width:min(460px,100%);
+  text-align:center;
+}
+.accepted-check{
+  width:72px;
+  height:72px;
+  margin:0 auto 22px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:38px;
+  font-weight:900;
+  background:#173226;
+  color:#87ebb8;
+  border:1px solid #28583f;
+}
+.accepted-card h2{
+  font-size:34px;
+  margin-bottom:10px;
+}
+.accepted-card p{color:var(--muted)}
+
+.bad-report-screen{
+  align-items:start;
+  overflow:auto;
+  padding-top:44px;
+  padding-bottom:44px;
+}
+.report-card{
+  width:min(760px,100%);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:26px;
+  background:#121722;
+  box-shadow:0 28px 90px rgba(0,0,0,.38);
+}
+.report-card h2{font-size:32px}
+.score-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0;
+}
+.score-row div{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#0f131c;
+}
+.score-row span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:7px;
+}
+.score-row strong{
+  font-size:20px;
+}
+.report-body{
+  line-height:1.8;
+  color:#c8d1de;
+  margin-bottom:22px;
+}
+.report-body h3{color:white;margin-bottom:8px}
+.report-body ul{padding-left:22px}
+@media(max-width:700px){
+  .bad-legal-row{align-items:flex-start}
+  .score-row{grid-template-columns:1fr}
+  .report-card{padding:20px}
+}

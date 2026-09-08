@@ -78,14 +78,17 @@
         </div>
 
         <div id="badControls" class="consent-area bad-ui hidden">
-          <div class="countdown-box">
-            <span>同意まで</span>
-            <strong id="countdown">10</strong>
-            <span>秒</span>
+          <div class="bad-legal-row">
+            <p class="bad-smallprint">
+              本規約に同意しない場合は、制限時間内に下のボタンを押してください。
+              操作がない場合、本規約に同意したものとして処理されます。
+            </p>
+            <div class="bad-timer-pill">
+              <span>残り</span>
+              <strong id="countdown">10</strong>
+              <span>秒</span>
+            </div>
           </div>
-          <p class="coercive-copy">
-            時間内に拒否しない場合、本規約に同意したものとみなされます。
-          </p>
           <button id="rejectOnlyBtn" class="danger-button">同意しない</button>
         </div>
 
@@ -112,6 +115,41 @@
         <h3>このUIの問題点</h3>
         <ul id="explanationList"></ul>
       </aside>
+
+      <div id="badAcceptedScreen" class="bad-accepted-screen hidden" aria-live="assertive">
+        <div class="accepted-card">
+          <div class="accepted-check">✓</div>
+          <h2>同意しました</h2>
+          <p>利用規約への同意を受け付けました。</p>
+        </div>
+      </div>
+
+      <div id="badReportScreen" class="bad-report-screen hidden">
+        <div class="report-card">
+          <p class="eyebrow">RESULT</p>
+          <h2>この同意画面の総評</h2>
+          <div class="score-row">
+            <div><span>明示性</span><strong>低い</strong></div>
+            <div><span>拒否のしやすさ</span><strong>低い</strong></div>
+            <div><span>誤同意リスク</span><strong>高い</strong></div>
+          </div>
+          <div class="report-body">
+            <h3>何が起きていたか</h3>
+            <p>
+              あなたは「同意する」という操作を一度もしていません。
+              それでも、10秒間拒否しなかっただけで利用規約に同意したものとして処理されました。
+            </p>
+            <h3>問題点</h3>
+            <ul>
+              <li>無操作・離席・読み込み中・規約を読んでいる途中を「同意」と区別できない。</li>
+              <li>拒否する側だけに時間制限付きの操作を要求している。</li>
+              <li>ユーザーが能動的に承諾した記録が残らない。</li>
+              <li>画面上は選択肢があるように見えても、実質的には同意へ誘導している。</li>
+            </ul>
+          </div>
+          <button id="reportBackBtn" class="primary-button">比較画面へ戻る</button>
+        </div>
+      </div>
     </section>
   </main>
 
