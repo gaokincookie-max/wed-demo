@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>利用規約UI 比較デモ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">DARK PATTERN UI DEMO</p>
+      <h1>利用規約への同意UI 比較デモ</h1>
+      <p class="lead">
+        同じ内容の利用規約を、<strong>悪い例</strong>と<strong>適切な例</strong>の2パターンで体験できます。
+        このページはUI設計の教材用デモです。
+      </p>
+    </header>
+
+    <section id="menu" class="panel menu-panel">
+      <h2>試すパターンを選択</h2>
+      <div class="mode-grid">
+        <button class="mode-card bad-card" data-mode="bad">
+          <span class="badge danger">悪い例</span>
+          <strong>時間切れで「みなし同意」</strong>
+          <small>拒否ボタンしかなく、カウントダウン終了で自動的に同意扱い</small>
+        </button>
+
+        <button class="mode-card good-card" data-mode="good">
+          <span class="badge safe">適切な例</span>
+          <strong>明示的な選択</strong>
+          <small>「同意する」「同意しない」を同じ画面で選択</small>
+        </button>
+      </div>
+    </section>
+
+    <section id="demo" class="panel hidden" aria-live="polite">
+      <div class="demo-head">
+        <button id="backBtn" class="ghost-button">← 戻る</button>
+        <div>
+          <p id="modeLabel" class="eyebrow"></p>
+          <h2 id="demoTitle"></h2>
+        </div>
+      </div>
+
+      <div class="terms-window">
+        <div class="terms-topbar">
+          <div class="fake-logo">PLAYFORGE</div>
+          <span>利用規約 v2.4</span>
+        </div>
+
+        <div class="terms-scroll" tabindex="0">
+          <h3>PLAYFORGE サービス利用規約</h3>
+          <p>この利用規約（以下「本規約」）は、PLAYFORGEが提供するゲームサービスの利用条件を定めるものです。</p>
+
+          <h4>第1条　適用</h4>
+          <p>本規約は、本サービスを利用するすべてのユーザーに適用されます。</p>
+
+          <h4>第2条　アカウント</h4>
+          <p>ユーザーは、自身の責任においてアカウント情報を管理するものとします。</p>
+
+          <h4>第3条　禁止事項</h4>
+          <p>不正アクセス、チート行為、他の利用者への迷惑行為、サービス運営を妨害する行為を禁止します。</p>
+
+          <h4>第4条　ゲームデータ</h4>
+          <p>ゲームの進行状況、設定、ランキング情報などは、サービス提供・改善のために保存される場合があります。</p>
+
+          <h4>第5条　サービス内容の変更</h4>
+          <p>運営上必要な場合、本サービスの内容を変更・停止することがあります。</p>
+
+          <h4>第6条　免責</h4>
+          <p>通信障害、端末不具合、その他やむを得ない事情によって生じた損害について、法令上許される範囲で責任を負わない場合があります。</p>
+
+          <h4>第7条　規約の変更</h4>
+          <p>必要に応じて本規約を変更することがあります。重要な変更についてはゲーム内などで告知します。</p>
+
+          <p class="terms-end">以上</p>
+        </div>
+
+        <div id="badControls" class="consent-area bad-ui hidden">
+          <div class="countdown-box">
+            <span>同意まで</span>
+            <strong id="countdown">10</strong>
+            <span>秒</span>
+          </div>
+          <p class="coercive-copy">
+            時間内に拒否しない場合、本規約に同意したものとみなされます。
+          </p>
+          <button id="rejectOnlyBtn" class="danger-button">同意しない</button>
+        </div>
+
+        <div id="goodControls" class="consent-area good-ui hidden">
+          <label class="check-row">
+            <input id="confirmRead" type="checkbox" />
+            <span>利用規約を確認しました</span>
+          </label>
+          <div class="button-row">
+            <button id="goodRejectBtn" class="secondary-button">同意しない</button>
+            <button id="goodAcceptBtn" class="primary-button" disabled>同意する</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="result" class="result-box hidden">
+        <p id="resultKicker" class="eyebrow"></p>
+        <h3 id="resultTitle"></h3>
+        <p id="resultText"></p>
+        <button id="retryBtn" class="primary-button">もう一度試す</button>
+      </div>
+
+      <aside id="explanation" class="explanation hidden">
+        <h3>このUIの問題点</h3>
+        <ul id="explanationList"></ul>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
